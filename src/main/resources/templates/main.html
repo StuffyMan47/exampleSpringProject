@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<link rel="stylesheet" href="main.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример создания нового элемента</title>
+</head>
+<body>
+    <form action="/players/add" method="post">
+        <input type="text" name="name" placeholder="Введите имя" required/>
+        <input type="text" name="team" placeholder="Введите команду" required/>
+        <input type="number" name="age" placeholder="Введите возраст" required/>
+        <input type="number" name="coast" placeholder="Введите цену" />
+        <input type="submit" value="Создать"/>
+    </form>
+    <form action="/players/delete" method="post">
+        <select name="name">
+            <option th:each="p:${players}" th:text="${p.name}" th:value="${p.name}"/>
+        </select>
+        <input type="submit" value="Удалить">
+    </form>
+<table>
+    <tr>
+        <td>Имя</td>
+        <td>Команда</td>
+        <td>Возраст</td>
+        <td>Цена</td>
+    </tr>
+    <tr th:each="p:${players}">
+        <td th:text="${p.getName()}"/>
+        <td th:text="${p.getTeam()}"/>
+        <td th:text="${p.getAge()}"/>
+        <td th:text="${p.getCoast()}"/>
+    </tr>
+</table>
+</body>
+</html>
