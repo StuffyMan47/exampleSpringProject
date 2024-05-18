@@ -24,7 +24,10 @@ public class FootballPlayerController {
                             @RequestParam Integer age,
                             @RequestParam(required = false, defaultValue = "0") Integer coast){
 
-        var newPlayer = new FootballPlayer(name, team, age, coast);
+        var command = dataBase.getFootballCommands().stream()
+                .filter(x->x.getName().equals(team)).findFirst().orElse(new FootballCommand());
+
+        var newPlayer = new FootballPlayer( (long)5, name, command, age, coast);
         dataBase.addFootballPlayer(newPlayer);
         return "redirect:/players";
     }

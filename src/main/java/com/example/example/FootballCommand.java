@@ -11,7 +11,9 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FootballPlayer {
+@Entity
+@Table(name="")
+public class FootballCommand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,13 +21,9 @@ public class FootballPlayer {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "team")
-    @JoinColumn(name = "command_id", referencedColumnName = "id")
-    private FootballCommand team;
+    @Column(name = "country")
+    private String country;
 
-    @Column(name = "age")
-    private Integer age;
-
-    @Column(name = "coast")
-    private Integer coast;
+    @Column(name = "isActive")
+    private Boolean isActive;
 }
